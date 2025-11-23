@@ -10,7 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    implementation("javazoom:jlayer:1.0.1")
+    implementation("org:jaudiotagger:2.0.1")
 }
 
 tasks.test {
