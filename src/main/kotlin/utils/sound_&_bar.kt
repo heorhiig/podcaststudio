@@ -1,4 +1,4 @@
-package ie.setu
+package ie.setu.utils
 
 import javazoom.jl.player.Player
 import org.jaudiotagger.audio.AudioFileIO
@@ -15,7 +15,7 @@ class AudioPlayerWithProgress {
     fun loadAudio(filePath: String) {
         val file = File(filePath)
         if (!file.exists()) {
-            println("Fline no exists: $filePath")
+            println("File no exists: $filePath")
             return
         }
 
@@ -39,7 +39,6 @@ class AudioPlayerWithProgress {
                 val input = FileInputStream(filePath)
                 player = Player(input)
                 isPlaying = true
-
 
                 startProgressTracker()
 
