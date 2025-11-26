@@ -3,35 +3,29 @@ package ie.setu.Components
 import ie.setu.Models.Podcast
 import ie.setu.Presistence.JSONSerializer
 import ie.setu.controllers.PodcastAPI
-import ie.setu.podcastAPI
 import ie.setu.utils.isValideCategory
 import ie.setu.utils.readNextInt
 import ie.setu.utils.readNextLine
 import java.io.File
+import java.nio.file.Files
 import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
 
 val podcastAPI = PodcastAPI(JSONSerializer(File("podcast.json")))
 
-fun addPodcast() {
-    var title = readNextLine("Add title for Podcast:")
-    var description = readNextLine("Add description for Podcast $title:")
-    var category = readNextLine("Add category for Podcast $title:")
-    var author = readNextLine("Add name or names of author for Podcast $title:")
-    var date = readNextLine("Add the release date:")
-    var path = readNextLine("Enter path to your audio with podcast:")
 
-//    var pathFile = File(path)
-//
-//    if (!pathFile.exists()) {
-//        return println("File not exists")
-//    }
-//
-//    var audioDir = File("src/audio")
-//
-//    var fileName = audioDir.name
-//
-//
-//    var targetPath = Paths.get("src/audio", fileName)
+
+fun addPodcast() {
+    var title = readNextLine(formatView("Add title for Podcast:").toString())
+    var description = readNextLine(formatView("Add description for Podcast $title:").toString())
+    var category = readNextLine(formatView( "Add category for Podcast $title:" +
+            "\n Use only this category Technology, Music, Art, Education, News, Sport" ).toString())
+    var author = readNextLine(formatView("Add name or names of author for Podcast $title:").toString())
+    var date = readNextLine(formatView("Add the release date:").toString() )
+    var path = readNextLine(
+        formatView("Enter path to your audio with podcast:" +
+                "\n Enter here path to your audio file correct:").toString()
+    )
 
     var isAdd = podcastAPI.add(Podcast(title, description, category, author, false, date, path))
 
@@ -78,11 +72,55 @@ fun listPodcasts() {
 
 
 fun listByCategory() {
-    val category = readNextLine("Enter one of this category \n Technology, Music, Art, Education, News, Sport2" +
+    val category = readNextLine("Enter one of this category \n Technology, Music, Art, Education, News, Sport:\n" +
             "")
 
     println(podcastAPI.filterByCategory(isValideCategory(category).toString()))
 }
 
+fun updatePodcastView() {
+    podcastAPI.listAllPodcasts()
+
+    if (podcastAPI.numberOfPodcasts() > 0) {
+        val indexToUpdate = readNextInt(formatView("Enter the index of Podcast what you want to update").toString())
+        if (podcastAPI.validIndex(indexToUpdate)) {
+            var title = readNextLine(formatView("Add title for Podcast:").toString())
+            var description = readNextLine(formatView("Add description for Podcast $title:").toString())
+            var category = readNextLine(formatView( "Add category for Podcast $title:" +
+                    "\n Use only this category Technology, Music, Art, Education, News, Sport" ).toString())
+            var author = readNextLine(formatView("Add name or names of author for Podcast $title:").toString())
+            var date = readNextLine(formatView("Add the release date:").toString() )
+            var path = readNextLine(
+                formatView("Enter path to your audio with podcast:" +
+                        "\n Enter here path to your audio file correct:").toString()
+            )
+
+            podcastAPI.updatePodcast(indexToUpdate, Podcast(title, description, category, author, false, date, path))
+        }
+    }
+}
+
+fun deletePodcastView() {
+    podcastAPI.listAllPodcasts()
+
+    if (podcastAPI.numberOfPodcasts() > 0) {
+        val indexToDelete = readNextInt(formatView("Enter the index of Podcast what you want to delete:").toString())
+
+        val deletedPodcast = podcastAPI.deletePodcast(indexToDelete)
+
+        if (deletedPodcast != null) {
+            println(formatView("Delete Successful Done!"))
+        } else println(formatView("Error in deleting"))
+    }
+}
 
 
+fun formatView(text: String) {
+    val line = "-".repeat(text.length)
+    val upArrow = "^".repeat(text.length)
+
+    println(upArrow)
+    println(text)
+    println(line)
+
+}
