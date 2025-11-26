@@ -9,5 +9,5 @@ data class Podcast(
     var authorName : String,
     var favorite : Boolean,
     var date : String,
-    var file : String
+    var file : String,
 )

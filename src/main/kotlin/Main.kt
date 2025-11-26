@@ -5,7 +5,10 @@ import java.io.File
 import ie.setu.controllers.PodcastAPI
 import ie.setu.Presistence.JSONSerializer
 import ie.setu.Components.addPodcast
+import ie.setu.Components.deletePodcastView
 import ie.setu.Components.listPodcasts
+import ie.setu.Components.updatePodcastView
+import ie.setu.utils.readNextLine
 
 val podcastAPI = PodcastAPI(JSONSerializer(File("podcast.json")))
 
@@ -21,10 +24,11 @@ fun mainMenu(): Int {
          > ----------------------------------
          > | MENU                           |
          > |   1) Add a podcast             | 
-         > |   2) List podcasts             |
-         > |   3) Create a playlist         |
-         > |   4) Go to the playlist        |
-         > |   5) list all podcasts         |
+         > |   2) Update a podcast          |
+         > |   3) Delete a podcast          |
+         > |   4) List podcasts             |
+         > |   5) Create a playlist         |
+         > |   6) Playlists                 |
          > ----------------------------------
          > |   20) Save podcast & playlists |
          > |   21) Load podcast & playlists |
@@ -36,19 +40,26 @@ fun mainMenu(): Int {
 }
 
 fun runMenu() {
+    var option: Int
     do {
-        when(val option = mainMenu()) {
+        option = mainMenu()
+
+        when(option) {
             1 -> addPodcast()
-            2 -> listPodcasts()
+            2 -> updatePodcastView()
+            3 -> deletePodcastView()
+            4 -> listPodcasts()
 //            3 -> createPlaylist()
 //            4 -> playlist()
-//            5 -> listPodcasts()
+            0 -> println("See you again")
             20 -> save()
             21 -> load()
             else -> print("Invalide option: $option")
         }
-    } while (true)
+    } while (option != 0)
 }
+
+
 
 
 
