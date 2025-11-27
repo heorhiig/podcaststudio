@@ -25,11 +25,11 @@ class AudioPlayerWithProgress {
             val audioHeader = audioFile.audioHeader
             totalDuration = audioHeader.trackLength.toLong()
 
-            println("Загружен трек: ${file.name}")
-            println("Длительность: ${formatTime(totalDuration)}")
+            println("The track has been uploaded: ${file.name}")
+            println("Duration: ${formatTime(totalDuration)}")
 
         } catch (e: Exception) {
-            println("Ошибка загрузки файла: ${e.message}")
+            println("File upload error: ${e.message}")
         }
     }
 
@@ -42,14 +42,14 @@ class AudioPlayerWithProgress {
 
                 startProgressTracker()
 
-                println("Воспроизведение...")
+                println("Playback...")
                 player!!.play()
 
                 isPlaying = false
-                println("\nВоспроизведение завершено")
+                println("\nPlayback complete")
 
             } catch (e: Exception) {
-                println("Ошибка воспроизведения: ${e.message}")
+                println("Playback error: ${e.message}")
                 isPlaying = false
             }
         }
@@ -70,7 +70,7 @@ class AudioPlayerWithProgress {
 
                 print("\r${createProgressBar(currentPosition, totalDuration)}")
 
-                Thread.sleep(500) // Обновляем каждые 500 мс
+                Thread.sleep(500)
             }
         }
     }
@@ -91,13 +91,14 @@ class AudioPlayerWithProgress {
     }
 }
 
-fun main() {
+fun listenAudio(path: String) {
     val player = AudioPlayerWithProgress()
-    val filePath = "src/song/505.mp3"
 
-    player.loadAudio(filePath)
-    player.play(filePath)
+    player.loadAudio(path)
+    player.play(path)
 
+
+    println("Press ENTER to stop playback…")
 
     Thread.sleep(1000)
     while (true) {
