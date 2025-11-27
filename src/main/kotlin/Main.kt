@@ -1,16 +1,10 @@
 package ie.setu
 
+import ie.setu.Components.*
 import ie.setu.utils.readNextInt
 import java.io.File
 import ie.setu.controllers.PodcastAPI
 import ie.setu.Presistence.JSONSerializer
-import ie.setu.Components.addPodcast
-import ie.setu.Components.deletePodcastView
-import ie.setu.Components.listPodcasts
-import ie.setu.Components.updatePodcastView
-import ie.setu.utils.readNextLine
-
-val podcastAPI = PodcastAPI(JSONSerializer(File("podcast.json")))
 
 fun main() {
     runMenu()
@@ -49,8 +43,8 @@ fun runMenu() {
             2 -> updatePodcastView()
             3 -> deletePodcastView()
             4 -> listPodcasts()
-//            3 -> createPlaylist()
-//            4 -> playlist()
+            5 -> addPlaylist()
+            6 -> listPlaylists()
             0 -> println("See you again")
             20 -> save()
             21 -> load()
@@ -66,6 +60,7 @@ fun runMenu() {
 fun save() {
     try {
         podcastAPI.store()
+        playlistAPI.store()
     } catch (e: Exception) {
         System.err.println("Error writing to file: $e")
     }
@@ -74,6 +69,7 @@ fun save() {
 fun load() {
     try {
         podcastAPI.load()
+        playlistAPI.load()
     } catch (e: Exception) {
         System.err.println("Error reading from file:: $e")
     }
