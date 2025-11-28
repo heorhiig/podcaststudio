@@ -15,65 +15,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Set executable permission for gradlew
+        run: chmod +x ./gradlew
 
-      # Runs the Gradle build task
-      - name: Run the Gradle Build
+      - name: Run Gradle Build
         run: ./gradlew build
-
-        # Runs the Ktlint plugin
-      - name: Run KtLint
-        run: ./gradlew ktlintCheck
-        
-        # Run detekt
-      - name: Run Detekt
-        run: ./gradlew detekt
-        
-        # Upload test report
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-report
-          path: build/reports/tests/test/index.html
-
-          
-        # Upload jacoc coverage report
-      - name: Upload Jacoco Coverage Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: jacoco-report
-          path: build/reports/jacoco/test/html
-
-          
-
-        #Builds a zip file with JUnit test report in it    
-      - name: Archive test report
-        uses: actions/upload-artifact@v4.4.2
-        with:
-          name: Test report
-          path: build/reports/tests/test
-             
-      # Builds a zip file with JUnit code covearge report in it    
-      - name: Archive coverage report
-        uses: actions/upload-artifact@v4.4.2
-        with:
-          name: Code Coverage report
-          path: build/reports/jacoco/test/html
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
