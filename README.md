@@ -8,6 +8,7 @@ That's why I wanted to create this app, so more people could try it and perhaps 
 ## What can my app provide?
 My app doesn't have a lot of unnecessary features. It's simple: add, save, listen, update, or delete.
 Most functions are located on the main menu:
+
          > ----------------------------------
          > |        Podcast Studio          |
          > ----------------------------------
@@ -24,6 +25,7 @@ Most functions are located on the main menu:
          > ----------------------------------
          > |   0) Exit                      |
          > ----------------------------------
+         
 
 The main functionality of my app is adding a podcast by entering its title, description, author, date, path to the MP3 audio file, and a favorite option. 
 The core idea behind this app is already there, but that's not all the functionality. Of course, you can delete or update a podcast at any time. 
