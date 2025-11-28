@@ -23,38 +23,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Make gradlew executable
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x ./gradlew
+
       # Run Gradle build
       - name: Run Gradle Build
         run: ./gradlew build
 
-      # Run KtLint for Kotlin code style checks
+      # Run KtLint
       - name: Run KtLint
         run: ./gradlew ktlintCheck
 
-      # Run Detekt for static code analysis
+      # Run Detekt
       - name: Run Detekt
         run: ./gradlew detekt
 
-      # Run tests with Gradle and generate Jacoco coverage report
+      # Run tests + Jacoco
       - name: Run Tests and Jacoco
         run: ./gradlew test jacocoTestReport
 
-      # Upload JUnit test report
+      # Upload reports
       - name: Upload Test Report
         uses: actions/upload-artifact@v4
         with:
           name: test-report
           path: build/reports/tests/test/index.html
 
-      # Upload Jacoco coverage report
       - name: Upload Jacoco Coverage Report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
           path: build/reports/jacoco/test/html
-
-      # Optional: multi-line script to print success message
-      - name: Done
-        run: |
-          echo "Build, Test, and Static Analysis Completed!"
-          echo "Reports are uploaded as artifacts."
