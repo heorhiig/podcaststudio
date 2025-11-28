@@ -29,7 +29,7 @@ class PlaylistAPI(serializerType: Serializer) {
         } else null
     }
 
-    fun updatePlaylist(index: Int, playlist: Playlist): Boolean? {
+    fun updatePlaylist(index: Int, playlist: Playlist): Boolean {
         val fPlaylist = findPlaylist(index)
 
         if (fPlaylist != null && playlist != null) {
@@ -37,7 +37,7 @@ class PlaylistAPI(serializerType: Serializer) {
             fPlaylist.description = playlist.description
             fPlaylist.favorite = playlist.favorite
             fPlaylist.podcasts = playlist.podcasts
-            return null
+            return true
         }
 
         return false
@@ -65,7 +65,7 @@ class PlaylistAPI(serializerType: Serializer) {
         val playlist = findPlaylist(playlistIndex)
         val podcast = playlist?.let { isValidListIndex(podcastIndex, it.podcasts) }
 
-        if (playlist != null && podcast != null) {
+        if (playlist != null && podcast != false) {
             playlist.podcasts.removeAt(podcastIndex)
         } else null
     }
@@ -73,17 +73,10 @@ class PlaylistAPI(serializerType: Serializer) {
     fun listPodcastInPl(playlistIndex: Int) {
         val playList = findPlaylist(playlistIndex)
 
-        if (playList != null) {
-            if (playList == null && playList.podcasts.isEmpty()) {
-                return formatView("No podcast in this playlist")
-            } else {
-                playList.podcasts
-                    .joinToString(separator = "\n") { podcast ->
-                        val index = playList.podcasts.indexOf(podcast)
-                        "$index: " +
-                                "\n${formatViewList(podcast)}"
-                    }
-            }
+        playList?.podcasts?.joinToString(separator = "\n") { podcast ->
+            val index = playList.podcasts.indexOf(podcast)
+            "$index: " +
+                    "\n${formatViewList(podcast)}"
         }
     }
 
