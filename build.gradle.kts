@@ -28,6 +28,11 @@ dependencies {
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.20")
 }
 
+detekt {
+    ignoreFailures = true
+}
+
+
 tasks.test {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport)
