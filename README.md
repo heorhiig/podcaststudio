@@ -1,5 +1,5 @@
 # Podcast Studion
-**In this app oyu can listen and save your favorite podcasts**
+**In this app you can listen and save your favorite podcasts**
 ## Creation of idea 
 Nowadays, people have really embraced the ability to listen to something while doing something, to combine business with pleasure.
 Podcasts are a wonderful ray of hope that helps us brighten up our daily routines at work or other activities with something useful and interesting. 
