@@ -97,11 +97,15 @@ fun listenAudio(path: String) {
     player.loadAudio(path)
     player.play(path)
 
-
     println("Press ENTER to stop playback…")
+    readln()
+    player.stop()
 
     Thread.sleep(1000)
     while (true) {
         Thread.sleep(100)
     }
+
+
+
 }

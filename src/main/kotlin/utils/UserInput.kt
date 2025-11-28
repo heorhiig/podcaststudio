@@ -58,3 +58,15 @@ fun readNextChar(prompt: String?): Char {
         }
     } while (true)
 }
+
+fun readValidCategory(prompt: String?): String {
+    var input = readNextLine(prompt)
+    do {
+        if (isValideCategory(input))
+            return input
+        else {
+            print("Invalid category $input.  Please try again: ")
+            input = readNextLine(prompt)
+        }
+    } while (true)
+}
