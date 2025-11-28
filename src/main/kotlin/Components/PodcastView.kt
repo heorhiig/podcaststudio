@@ -17,7 +17,7 @@ val podcastAPI = PodcastAPI(JSONSerializer(File("podcast.json")))
 fun addPodcast() {
     var title = readNextLine(formatView("Add title for Podcast:").toString())
     var description = readNextLine(formatView("Add description for Podcast $title:").toString())
-    var category = readNextLine(formatView( "Add category for Podcast $title:" +
+    var category = readValidCategory(formatView( "Add category for Podcast $title:" +
             "\n Use only this category Technology, Music, Art, Education, News, Sport" ).toString())
     var author = readNextLine(formatView("Add name or names of author for Podcast $title:").toString())
     var date = readNextLine(formatView("Add the release date:").toString() )

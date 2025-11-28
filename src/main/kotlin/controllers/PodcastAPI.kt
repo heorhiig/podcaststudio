@@ -46,7 +46,7 @@ class PodcastAPI(serializerType: Serializer) {
         } else null
     }
 
-    fun updatePodcast(indexToUpdate: Int, podcast: Podcast): Boolean? {
+    fun updatePodcast(indexToUpdate: Int, podcast: Podcast?): Boolean? {
         val fPodcast = findPodcast(indexToUpdate)
 
         if (fPodcast != null && podcast != null) {
