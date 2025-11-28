@@ -1,6 +1,6 @@
 package ie.setu.Models
 
-class Playlist(
+data class Playlist(
     var name: String,
     var description: String,
     var favorite: Boolean,
