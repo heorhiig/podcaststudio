@@ -33,6 +33,44 @@ jobs:
       - name: Run the Gradle Build
         run: ./gradlew build
 
+        # Runs the Ktlint plugin
+      - name: Run KtLint
+        run: ./gradlew ktlintCheck
+        
+        # Run detekt
+      - name: Run Detekt
+        run: ./gradlew detekt
+        
+        # Upload test report
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: build/reports/tests/test/index.html
+
+          
+        # Upload jacoc coverage report
+      - name: Upload Jacoco Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: build/reports/jacoco/test/html
+
+          
+
+        #Builds a zip file with JUnit test report in it    
+      - name: Archive test report
+        uses: actions/upload-artifact@v4.4.2
+        with:
+          name: Test report
+          path: build/reports/tests/test
+             
+      # Builds a zip file with JUnit code covearge report in it    
+      - name: Archive coverage report
+        uses: actions/upload-artifact@v4.4.2
+        with:
+          name: Code Coverage report
+          path: build/reports/jacoco/test/html
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
