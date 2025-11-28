@@ -23,7 +23,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Run Gradle build
+      - name: Set executable permission for gradlew
+        run: chmod +x ./gradlew
+
       - name: Run Gradle Build
         run: ./gradlew build
-
