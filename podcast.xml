@@ -1,0 +1,40 @@
+<object-stream>
+  <list>
+    <ie.setu.Models.Podcast>
+      <podcastTitle>Tech Talk</podcastTitle>
+      <podcastDescription>Tech podcast</podcastDescription>
+      <podcastCategory>Technology</podcastCategory>
+      <authorName>John</authorName>
+      <favorite>true</favorite>
+      <date>2025-01-01</date>
+      <file>tech.mp3</file>
+    </ie.setu.Models.Podcast>
+    <ie.setu.Models.Podcast>
+      <podcastTitle>Daily News</podcastTitle>
+      <podcastDescription>News podcast</podcastDescription>
+      <podcastCategory>News</podcastCategory>
+      <authorName>Anna</authorName>
+      <favorite>false</favorite>
+      <date>2025-01-02</date>
+      <file>news.mp3</file>
+    </ie.setu.Models.Podcast>
+    <ie.setu.Models.Podcast>
+      <podcastTitle>Education Hour</podcastTitle>
+      <podcastDescription>Education podcast</podcastDescription>
+      <podcastCategory>Education</podcastCategory>
+      <authorName>Mike</authorName>
+      <favorite>false</favorite>
+      <date>2025-01-03</date>
+      <file>education.mp3</file>
+    </ie.setu.Models.Podcast>
+    <ie.setu.Models.Podcast>
+      <podcastTitle>Art Time</podcastTitle>
+      <podcastDescription>Art podcast</podcastDescription>
+      <podcastCategory>Art</podcastCategory>
+      <authorName>Lisa</authorName>
+      <favorite>true</favorite>
+      <date>2025-01-04</date>
+      <file>art.mp3</file>
+    </ie.setu.Models.Podcast>
+  </list>
+</object-stream>
