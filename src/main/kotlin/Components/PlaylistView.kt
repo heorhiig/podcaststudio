@@ -8,6 +8,7 @@ import java.io.File
 
 var playlistAPI = PlaylistAPI(JSONSerializer(File("playlist.json")))
 
+//User add playlist by adding all additional inforamtion and chose the podcast what he wants to put inside
 fun addPlaylist() {
     val name = readNextLine(formatView("Enter the name for your Playlist").toString())
     val description = readNextLine(formatView("Enter the description to your playlist").toString())
@@ -20,7 +21,7 @@ fun addPlaylist() {
         else -> false
     }
 
-    val playlist = playlistAPI.addPlaylist(Playlist(name, description, favorite))
+    playlistAPI.addPlaylist(Playlist(name, description, favorite))
 
     val playlistIndex = playlistAPI.numberOfPlaylists() - 1
 
@@ -48,7 +49,7 @@ fun addPlaylist() {
     println("Playlist created successfully")
 }
 
-
+//This function opens menu for playlists where user can do choose many options
 fun listPlaylists() {
     if (playlistAPI.numberOfPlaylists() > 0) {
         do {
@@ -82,6 +83,7 @@ fun listPlaylists() {
     }
 }
 
+//User enter new values to update playlist and new podcast too
 fun updatePlaylist() {
     println(playlistAPI.listAllPlaylists())
 
@@ -110,6 +112,7 @@ fun updatePlaylist() {
     } else println("Invalid index")
 }
 
+//User can delete playlist by entering the index of playlist what he wants to delete
 fun deletePlaylist() {
     println(playlistAPI.listAllPlaylists())
 
@@ -126,6 +129,7 @@ fun deletePlaylist() {
     }
 }
 
+//This function open playlist to show all info about playlist and listen podcasts inside
 fun openPlaylist() {
     println(playlistAPI.listAllPlaylists())
 
@@ -148,6 +152,7 @@ fun openPlaylist() {
         playlistAPI.listPodcastInPl(playlistIndex)
     }
 
+    //There is option what user can choose to listen, add or delete podcast from playlist
     while (true) {
         println(
             """
@@ -173,6 +178,7 @@ fun openPlaylist() {
     }
 }
 
+//This function add podcast to playlist by index after shows list of saved podcasts
 fun addPodcastToplaylist(playlistIndex: Int) {
     println(podcastAPI.listAllPodcasts())
     var podcastIndex = readNextInt(formatView("Enter index of podcast to add").toString())
@@ -185,6 +191,8 @@ fun addPodcastToplaylist(playlistIndex: Int) {
     } else println(formatView("Adding failed"))
 }
 
+
+//This function delete podcast from playlist by index
 fun deletePodcastFromPlaylist(playlistIndex: Int) {
     println(podcastAPI.listAllPodcasts())
     var podcastIndex = readNextInt(formatView("Enter index of podcast to add").toString())
@@ -197,6 +205,7 @@ fun deletePodcastFromPlaylist(playlistIndex: Int) {
 
 }
 
+//This function runs audio file from podcast to listen
 fun listenPodcast(playlist: Playlist) {
     println(podcastAPI.listAllPodcasts())
     var podcastIndex = readNextInt(formatView("Enter index of podcast to listen").toString())
